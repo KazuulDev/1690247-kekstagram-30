@@ -1,6 +1,7 @@
 import { body } from './utils';
 import { onFormSubmit, form, hashtagInput, descriptionInput} from './form-validation';
 import { setSizeListeners, removeSizeListeners } from './new-photo-handling';
+import { resetEffects, updateSlider } from './effects';
 
 const uploadButton = document.querySelector('.img-upload__input');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
@@ -15,12 +16,13 @@ function closeUploadForm () {
   document.removeEventListener('keydown', handleEscapeKey);
   closeButton.removeEventListener('click', closeUploadForm);
   preview.src = '';
+  updateSlider();
+  resetEffects();
   form.reset();
 }
 
 function handleEscapeKey(event) {
   const isFocusOnInput = document.activeElement === hashtagInput || document.activeElement === descriptionInput;
-
   if (event.key === 'Escape' && !isFocusOnInput) {
     closeUploadForm();
   }

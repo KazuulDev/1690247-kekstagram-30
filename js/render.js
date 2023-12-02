@@ -1,5 +1,7 @@
 import { openFullsize } from './full-size';
 
+const dataPromise = fetch('https://30.javascript.pages.academy/kekstagram/data').then((response) => response.json());
+
 
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture');
@@ -21,4 +23,4 @@ function renderPictures(photos) {
   });
 }
 
-export { renderPictures };
+export { renderPictures, dataPromise };
